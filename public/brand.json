@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Coca-cola",
+        "image": "https://i.postimg.cc/fLB6gXVd/4.png",
+        "id": 1
+    },
+    {
+        "name": "KFC",
+        "image": "https://i.postimg.cc/d11W3f07/5.png",
+        "id": 2
+    },
+    {
+        "name": "Nestle",
+        "image": "https://i.postimg.cc/DzYNrhHQ/1.png",
+        "id": 3
+    },
+    {
+        "name": "Pepsi",
+        "image": "https://i.postimg.cc/vmjP1zx3/4.png",
+        "id": 4
+    },
+    {
+        "name": "Starbucks",
+        "image": "https://i.postimg.cc/bwndcYHr/2.png",
+        "id": 5
+    },
+    {
+        "name": "Mars",
+        "image": "https://i.postimg.cc/BvHRTk5X/1.png",
+        "id": 6
+    }
+]
