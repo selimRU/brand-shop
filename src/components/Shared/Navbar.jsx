@@ -1,10 +1,16 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { Context } from '../AuthProvider/AuthProvider';
 
 const Navbar = () => {
+    const { user } = useContext(Context)
+    
     const navlinks = <div className=' flex flex-col lg:flex-row gap-3 lg:gap-5 lg:text-white ralway'>
         <NavLink>Home</NavLink>
-        <NavLink>Add Product</NavLink>
+        <NavLink to="/addProducts"
+            className={({ isActive }) =>
+                isActive ? "underline" : ""
+            }>Add Product</NavLink>
         <NavLink>My Cart</NavLink>
     </div>
 
@@ -30,12 +36,17 @@ const Navbar = () => {
                         {navlinks}
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <button className="btn">Login</button>
-                </div>
-                {/* <div className="navbar-end">
-                <button className="btn">Log Out</button>
-            </div> */}
+                {
+                    user ?
+                        <div className="navbar-end">
+                            <button className="btn">Log Out</button>
+                        </div> :
+                        <div className="navbar-end">
+                            <Link to='/logIn'>
+                                <button className="btn">Login</button>
+                            </Link>
+                        </div>
+                }
             </div>
         </div>
     );

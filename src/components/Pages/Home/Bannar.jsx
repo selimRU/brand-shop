@@ -14,7 +14,7 @@ const Bannar = () => {
                 <img src="https://i.postimg.cc/zDbS3dM4/ban.png" />
             </div>
             <div>
-                <img src="https://i.postimg.cc/N0CmjTxg/ban1.png" />
+                <img src="https://i.postimg.cc/d0VGFnrH/ban2.png" />
             </div>
         </Carousel>
     );
