@@ -9,6 +9,10 @@ import AddProducts from './components/AddProducts/AddProducts.jsx'
 import SignIn from './components/SignIn/SignIn.jsx'
 import LogIn from './components/LogIn/LogIn.jsx'
 import AuthProvider from './components/AuthProvider/AuthProvider.jsx'
+import BrandProducts from './components/BrandProducts/BrandProducts.jsx'
+import ProductDetails from './components/ProductDetails/ProductDetails.jsx'
+import MyCart from './components/MyCart/MyCart.jsx'
+import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx'
 
 const router = createBrowserRouter([
   {
@@ -17,11 +21,26 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home></Home>
+        element: <Home></Home>,
       },
       {
         path: '/addProducts',
         element: <AddProducts></AddProducts>
+      },
+      {
+        path: '/brandProducts/:name',
+        element: <BrandProducts></BrandProducts>,
+        loader: () => fetch('../brand.json')
+      },
+      {
+        path: '/productDetails/:id',
+        element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/products?${params.id}`)
+      },
+      {
+        path: '/myCart',
+        element: <PrivateRoute><MyCart></MyCart></PrivateRoute>,
+        loader: () => fetch('http://localhost:5000/cart')
       },
       {
         path: '/signIn',

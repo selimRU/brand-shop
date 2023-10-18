@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../AuthProvider/AuthProvider";
 
 
@@ -8,13 +8,19 @@ import { Context } from "../AuthProvider/AuthProvider";
 const LogIn = () => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
-
+    const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location);
     const { logIn } = useContext(Context)
 
     const handleLogIn = (e) => {
         e.preventDefault()
         logIn(email, password)
-            .then()
+            .then(result => {
+                console.log(result.user);
+                navigate(location?.state ? location.state : '/')
+            })
+
     }
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-slate-300 max-w-4xl mx-auto my-10">

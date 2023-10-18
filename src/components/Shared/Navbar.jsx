@@ -4,14 +4,24 @@ import { Context } from '../AuthProvider/AuthProvider';
 
 const Navbar = () => {
     const { user } = useContext(Context)
-    
+    const { logOut } = useContext(Context)
+
+    const handleLogOut = () => {
+        logOut()
+    }
     const navlinks = <div className=' flex flex-col lg:flex-row gap-3 lg:gap-5 lg:text-white ralway'>
-        <NavLink>Home</NavLink>
+        <NavLink to="/"
+            className={({ isActive }) =>
+                isActive ? "underline" : ""
+            }>Home</NavLink>
         <NavLink to="/addProducts"
             className={({ isActive }) =>
                 isActive ? "underline" : ""
             }>Add Product</NavLink>
-        <NavLink>My Cart</NavLink>
+        <NavLink to="/myCart"
+            className={({ isActive }) =>
+                isActive ? "underline" : ""
+            }>My Cart</NavLink>
     </div>
 
     return (
@@ -39,7 +49,7 @@ const Navbar = () => {
                 {
                     user ?
                         <div className="navbar-end">
-                            <button className="btn">Log Out</button>
+                            <button onClick={handleLogOut} className="btn">Log Out</button>
                         </div> :
                         <div className="navbar-end">
                             <Link to='/logIn'>

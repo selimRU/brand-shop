@@ -11,7 +11,7 @@ const AddProducts = () => {
         const price = form.price.value
         const description = form.description.value
         const newProduct = { name, category, price, description, image }
-        fetch("http://localhost:5000/product", {
+        fetch("http://localhost:5000/products", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -39,6 +39,20 @@ const AddProducts = () => {
                 <p className=" text-center text-[#1B1A1AB3]">Welcome to the Product Add Page</p>
                 <form onSubmit={handleAddProduct}>
                     <div className="w-[70%] mx-auto px-10">
+                        <div>
+                            <label htmlFor="price" className="block text-sm font-medium leading-6 text-[#1B1A1AB3]">
+                                Image
+                            </label>
+                            <div className="relative mt-2 rounded-md shadow-sm">
+                                <input
+                                    type="text"
+                                    name="image"
+                                    id="photo"
+                                    className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-[#1B1A1AB3] ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    placeholder="Enter photo URL"
+                                />
+                            </div>
+                        </div>
                         <div>
                             <label htmlFor="price" className="block text-sm font-medium leading-6 text-[#1B1A1AB3]">
                                 Name
@@ -97,20 +111,7 @@ const AddProducts = () => {
                                 />
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="price" className="block text-sm font-medium leading-6 text-[#1B1A1AB3]">
-                                Photo
-                            </label>
-                            <div className="relative mt-2 rounded-md shadow-sm">
-                                <input
-                                    type="text"
-                                    name="image"
-                                    id="photo"
-                                    className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-[#1B1A1AB3] ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    placeholder="Enter photo URL"
-                                />
-                            </div>
-                        </div>
+
                         <div className=' mt-6'>
                             <button className=" bg-slate-500 text-white w-full py-2 rounded-md" type="submit">Add Product</button>
                         </div>
