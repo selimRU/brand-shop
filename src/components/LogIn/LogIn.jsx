@@ -16,7 +16,7 @@ const LogIn = () => {
     // google login
     const handleGoogleLogin = () => {
         googleLogin()
-            .then(res => res.user)
+            .then(res => console.log(res.user))
     }
 
     // password login
@@ -24,7 +24,7 @@ const LogIn = () => {
         e.preventDefault()
         logIn(email, password)
             .then((res) => {
-                const user = res.user
+                console.log(res.user)
                 toast.success("You have logged in successfully", {
                     position: toast.POSITION.TOP_CENTER
                 });

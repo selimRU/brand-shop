@@ -49,6 +49,10 @@ const Navbar = () => {
                 {
                     user ?
                         <div className="navbar-end">
+                            <div className=" flex flex-col md:flex-row-reverse md:gap-3 lg:flex-row-reverse items-center lg:gap-2">
+                                <img className=" end-6 h-6 rounded-full" src={user.photoURL} alt="" />
+                                <p className=" text-xs lg:text-sm md:text-sm">{user.displayName}</p>
+                            </div>
                             <button onClick={handleLogOut} className="btn">Log Out</button>
                         </div> :
                         <div className="navbar-end">

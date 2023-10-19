@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../AuthProvider/AuthProvider';
+import { toast } from 'react-toastify';
 
 
 const SignIn = () => {
@@ -9,7 +10,7 @@ const SignIn = () => {
     const [name, setName] = useState('')
     const [photo, setPhoto] = useState('')
     const [error, setError] = useState('')
-    const { createUser } = useContext(Context)
+    const { createUser,profileUpdate } = useContext(Context)
 
 
     const handleSignIn = (e) => {
@@ -31,7 +32,6 @@ const SignIn = () => {
         createUser(email, password)
             .then(res => {
                 console.log(res.user);
-                profileUpdate(name, photo)
                 profileUpdate(name, photo)
                     .then(() => {
                         toast.success("You have created user successfully", {

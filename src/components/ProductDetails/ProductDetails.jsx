@@ -27,15 +27,20 @@ const ProductDetails = () => {
             })
     }
     return (
-        <div className=' max-w-6xl mx-auto my-10'>
-            <img className=' w-[60%] mx-auto ' src={product?.image} alt="" />
-            <div className=' flex justify-center'>
-                <div>
-                    <p>Name: {product.name}</p>
-                    <p>Price: {product.price}</p>
-                    <p>Category: {product.category}</p>
-                    <p>Description: {product.description}</p>
-                    <button onClick={handleAddToCart} className=' bg-slate-500 px-5 py-2 rounded-md'>Add Cart</button>
+        <div className=' max-w-6xl mx-auto my-10 space-y-2 px-3'>
+            <img className=' md:w-full lg:w-[60%] mx-auto rounded-md ' src={product?.image} alt="" />
+            <div className=' lg:ml-[20%]'>
+                <div className=' '>
+                    <div className="text-justify">
+                        <div className='space-y-2 '>
+                            <h3><span className=" font-semibold text-[#1B1A1A] raleway">name: </span>{product.name}</h3>
+                            <h3><span className=" font-semibold text-[#1B1A1A] raleway">price: </span>{product.price}</h3>
+                            <h3><span className=" font-semibold text-[#1B1A1A] raleway">supplier: </span>{product.type}</h3>
+                            <h3><span className=" font-semibold text-[#1B1A1A] raleway">chef: </span>{product.description}</h3>
+                            <h3><span className=" font-semibold text-[#1B1A1A] raleway">supplier: </span>{product.ratting}</h3>
+                        </div>
+                    </div>
+                    <button onClick={handleAddToCart} className=' bg-slate-500 px-5 py-2 rounded-md mt-2'>Add Cart</button>
                 </div>
             </div>
         </div>
