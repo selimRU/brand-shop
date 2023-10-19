@@ -13,11 +13,14 @@ import BrandProducts from './components/BrandProducts/BrandProducts.jsx'
 import ProductDetails from './components/ProductDetails/ProductDetails.jsx'
 import MyCart from './components/MyCart/MyCart.jsx'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx'
+import UpdateProduct from './components/UpdateProduct/UpdateProduct.jsx'
+import Error from './components/Error/Error.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root></Root>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: '/',
@@ -28,6 +31,11 @@ const router = createBrowserRouter([
         element: <PrivateRoute><AddProducts></AddProducts></PrivateRoute>
       },
       {
+        path: '/update/:id',
+        element: <UpdateProduct></UpdateProduct>,
+        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+      },
+      {
         path: '/brandProducts/:name',
         element: <BrandProducts></BrandProducts>,
         loader: () => fetch('../brand.json')
@@ -35,7 +43,7 @@ const router = createBrowserRouter([
       {
         path: '/productDetails/:id',
         element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/products?${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
       },
       {
         path: '/myCart',
