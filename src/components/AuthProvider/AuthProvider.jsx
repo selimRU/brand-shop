@@ -11,8 +11,7 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [brands, setBrands] = useState([])
     const [products, setProducts] = useState([])
-
-
+    
     useEffect(() => {
         fetch('../brand.json')
             .then(res => res.json())
@@ -70,7 +69,7 @@ const AuthProvider = ({ children }) => {
         user,
         brands,
         products,
-        loading
+        loading,
     }
 
     return (

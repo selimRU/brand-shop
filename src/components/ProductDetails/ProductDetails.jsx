@@ -1,12 +1,10 @@
 import React from 'react';
-import { useLoaderData, useParams } from 'react-router-dom';
+import { useLoaderData} from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const ProductDetails = () => {
     const loadProducts = useLoaderData()
     console.log(loadProducts);
-    // const product = loadProducts.find(product => product._id === id)
-    // console.log(product);
 
     const handleAddToCart = (e) => {
         e.preventDefault()
@@ -19,6 +17,7 @@ const ProductDetails = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 if (data.insertedId) {
                     Swal.fire({
                         title: 'Wow!!!',

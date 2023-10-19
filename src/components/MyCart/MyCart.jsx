@@ -1,24 +1,29 @@
-import { useLoaderData } from "react-router-dom";
-
+import { useLoaderData, useParams } from "react-router-dom";
+import CartCard from "./CartCard";
+import { useState } from "react";
+import { MdDangerous } from "react-icons/md";
 
 const MyCart = () => {
     const myCart = useLoaderData()
     console.log(myCart);
+    const [newCart, setNewCart] = useState(myCart)
+    console.log(newCart);
+
     return (
-        <div className=" max-w-6xl mx-auto my-10 grid md:grid-cols-2 lg:grid-cols-3">
-            {
-                myCart?.map(cart => <div key={cart._id}>
-                    <img className=" w-[300px] h-[200px] mx-auto" src={cart.image} alt="" />
-                    <div className='space-y-1 ml-10 lg:w-[40%]'>
-                        <h3><span className=" font-semibold text-[#1B1A1A] raleway">name: </span>{cart.name}</h3>
-                        <h3><span className=" font-semibold text-[#1B1A1A] raleway">price: </span>{cart.price} Tk</h3>
-                        <h3><span className=" font-semibold text-[#1B1A1A] raleway">Type: </span>{cart.type}</h3>
-                        <h3><span className=" font-semibold text-[#1B1A1A] raleway">Description: </span>{cart.description}</h3>
-                        <h3><span className=" font-semibold text-[#1B1A1A] raleway">Ratting: </span>{cart.ratting}</h3>
-                    </div>
-                </div>)
+        <div className=" relative mb-[40%] max-w-6xl mx-auto my-10 grid md:grid-cols-2 lg:grid-cols-3">
+            {newCart.length === 0 ? <div className=" absolute md:left-[20%] lg:left-[30%] px-3 mt-5 mb-[55%] lg:mb-[55%]">
+                <h3 className="  md:text-xl lg:text-2xl font-semibold"> You didn't added any product,please addcart first</h3>
+                <MdDangerous className=" absolute lg:left-[45%] lg:mt-5 md:mt-5 md:left-[43%] left-[40%] text-red-500 text-6xl"></MdDangerous>
+            </div>
+                :
+                newCart?.map(cart => <CartCard
+                    key={cart._id}
+                    cart={cart}
+                    newCart={newCart}
+                    setNewCart={setNewCart}
+                ></CartCard>)
             }
-        </div>
+        </div >
     );
 };
 

@@ -6,12 +6,14 @@ const AddProducts = () => {
         e.preventDefault()
         const form = e.target
         const image = form.image.value
+        const brand = form.br.value
         const name = form.name.value
         const type = form.type.value
         const price = form.price.value
         const description = form.description.value
         const ratting = form.ratting.value
         const newProduct = { name, type, price, description,ratting, image }
+        console.log(newProduct);
         fetch("http://localhost:5000/products", {
             method: "POST",
             headers: {
@@ -67,6 +69,22 @@ const AddProducts = () => {
                                     id="name"
                                     className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-[#1B1A1AB3] ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     placeholder="Enter product name"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="price" className="block text-sm font-medium leading-6 text-[#1B1A1AB3]">
+                                Brand name
+                            </label>
+                            <div className="relative mt-2 rounded-md shadow-sm">
+                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                </div>
+                                <input
+                                    type="text"
+                                    name="brand"
+                                    id="brand"
+                                    className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-[#1B1A1AB3] ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    placeholder="Enter brand name"
                                 />
                             </div>
                         </div>
@@ -128,7 +146,7 @@ const AddProducts = () => {
                         </div>
 
                         <div className=' mt-6'>
-                            <button className=" bg-slate-500 text-white w-full py-2 rounded-md" type="submit">Update Product</button>
+                            <button className=" bg-slate-500 text-white w-full py-2 rounded-md" type="submit">Add Product</button>
                         </div>
                     </div>
                 </form>
