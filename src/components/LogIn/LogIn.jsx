@@ -1,26 +1,43 @@
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../AuthProvider/AuthProvider";
-
+import { AiOutlineGoogle } from 'react-icons/ai';
+import { toast } from "react-toastify";
 
 
 
 const LogIn = () => {
+    const { googleLogin,logIn } = useContext(Context)
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     const navigate = useNavigate()
     const location = useLocation()
-    console.log(location);
-    const { logIn } = useContext(Context)
 
+    // google login
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(res => res.user)
+    }
+
+    // password login
     const handleLogIn = (e) => {
         e.preventDefault()
         logIn(email, password)
-            .then(result => {
-                console.log(result.user);
+            .then((res) => {
+                const user = res.user
+                toast.success("You have logged in successfully", {
+                    position: toast.POSITION.TOP_CENTER
+                });
                 navigate(location?.state ? location.state : '/')
-            })
+                e.target.reset()
 
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                toast.error(errorMessage, {
+                    position: toast.POSITION.TOP_CENTER
+                });
+            })
     }
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-slate-300 max-w-4xl mx-auto my-10">
@@ -78,6 +95,9 @@ const LogIn = () => {
                 </form>
             </div>
             <p className="text-center mt-5">New here? please <Link to='/signIn'><span className=" text-blue-700 underline ml-6  font-semibold">SignIn</span></Link></p>
+            <div className=' flex justify-center py-5'>
+                <button onClick={handleGoogleLogin} className=' btn btn-outline text-center hover:bg-yellow-400'><span className=' text-xl text-blue-400'><AiOutlineGoogle /></span> Join With Google</button>
+            </div>
         </div>
     );
 };

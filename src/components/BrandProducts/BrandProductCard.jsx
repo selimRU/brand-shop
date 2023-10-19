@@ -4,7 +4,7 @@ import { BsEyeFill } from 'react-icons/bs';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { MdOutlineDelete } from 'react-icons/md';
 const BrandProductCard = ({ brandProduct }) => {
-    const { _id, category, description, image, name, price } = brandProduct
+    const { _id, type, description, image, name, price,ratting } = brandProduct
     return (
         <div className='bg-[#F5F4F1] lg:flex  lg:items-center justify-between space-y-4 p-5 rounded-md'>
             <div>
@@ -20,8 +20,9 @@ const BrandProductCard = ({ brandProduct }) => {
             <div>
                 <p>Name: {name}</p>
                 <p>Price: {price}</p>
-                <p>Category: {category}</p>
+                <p>Type: {type}</p>
                 <p>Description: {description}</p>
+                <p>Ratting: {ratting}</p>
             </div>
             <div className=' flex flex-row md:flex-row lg:flex-col justify-evenly px-24 lg:px-0 lg:gap-0 gap-4 lg:space-y-4'>
                 <div>

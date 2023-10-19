@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+
 import Swal from 'sweetalert2';
 
 const AddProducts = () => {
@@ -7,10 +7,11 @@ const AddProducts = () => {
         const form = e.target
         const image = form.image.value
         const name = form.name.value
-        const category = form.category.value
+        const type = form.type.value
         const price = form.price.value
         const description = form.description.value
-        const newProduct = { name, category, price, description, image }
+        const ratting = form.ratting.value
+        const newProduct = { name, type, price, description,ratting, image }
         fetch("http://localhost:5000/products", {
             method: "POST",
             headers: {
@@ -71,15 +72,15 @@ const AddProducts = () => {
                         </div>
                         <div>
                             <label htmlFor="price" className="block text-sm font-medium leading-6 text-[#1B1A1AB3]">
-                                category
+                                Type
                             </label>
                             <div className="relative mt-2 rounded-md shadow-sm">
                                 <input
                                     type="text"
-                                    name="category"
+                                    name="type"
                                     id="category"
                                     className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-[#1B1A1AB3] ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    placeholder="Enter category"
+                                    placeholder="Enter type"
                                 />
                             </div>
                         </div>
@@ -99,7 +100,7 @@ const AddProducts = () => {
                         </div>
                         <div>
                             <label htmlFor="price" className="block text-sm font-medium leading-6 text-[#1B1A1AB3]">
-                                description
+                                Description
                             </label>
                             <div className="relative mt-2 rounded-md shadow-sm">
                                 <input
@@ -108,6 +109,20 @@ const AddProducts = () => {
                                     id="description"
                                     className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-[#1B1A1AB3] ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     placeholder="Enter description"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="price" className="block text-sm font-medium leading-6 text-[#1B1A1AB3]">
+                                Rattings
+                            </label>
+                            <div className="relative mt-2 rounded-md shadow-sm">
+                                <input
+                                    type="text"
+                                    name="ratting"
+                                    id="ratting"
+                                    className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-[#1B1A1AB3] ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    placeholder="Enter ratting"
                                 />
                             </div>
                         </div>
