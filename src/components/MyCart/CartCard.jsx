@@ -3,7 +3,6 @@ import Swal from 'sweetalert2';
 
 const CartCard = ({ cart, setNewCart, newCart }) => {
     const { _id, image, name, price, type, description, ratting } = cart;
-
     const handleDeleteProduct = () => {
         fetch(`http://localhost:5000/cart/${_id}`, {
             method: "DELETE"
@@ -38,8 +37,7 @@ const CartCard = ({ cart, setNewCart, newCart }) => {
             })
     }
     return (
-        <div>
-
+        <div className=' shadow-md p-3 rounded-md'>
             <img className=" w-[300px] h-[200px] mx-auto" src={image} alt="" />
             <div className='space-y-1 ml-10 lg:w-[40%]'>
                 <h3><span className=" font-semibold text-[#1B1A1A] raleway">name: </span>{name}</h3>

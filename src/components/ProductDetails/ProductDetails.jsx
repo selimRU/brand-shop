@@ -1,11 +1,16 @@
-import React from 'react';
-import { useLoaderData} from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Context } from '../AuthProvider/AuthProvider';
 
 const ProductDetails = () => {
     const loadProducts = useLoaderData()
     console.log(loadProducts);
-
+    const { user } = useContext(Context)
+    console.log(user);
+    const email = user.email
+    const cart = { ...loadProducts, email }
+    console.log(cart);
     const handleAddToCart = (e) => {
         e.preventDefault()
         fetch("http://localhost:5000/cart", {
@@ -13,7 +18,7 @@ const ProductDetails = () => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(loadProducts),
+            body: JSON.stringify(cart),
         })
             .then(res => res.json())
             .then(data => {
