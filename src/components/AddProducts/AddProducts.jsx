@@ -17,7 +17,7 @@ const AddProducts = () => {
         const ratting = form.ratting.value
         const newProduct = { name, type, price, description, ratting, image, brand_name }
         console.log(newProduct);
-        fetch("https://brand-shop-assignment-server-side-7xzvemomc.vercel.app/products", {
+        fetch("https://brand-shop-assignment-server-side-3xu1ymexo.vercel.app/products", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

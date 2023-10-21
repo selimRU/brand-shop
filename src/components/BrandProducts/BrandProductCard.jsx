@@ -11,7 +11,7 @@ const BrandProductCard = ({ brandProduct, newProducts, setNewProducts }) => {
     const { _id, type, description, image, name, price, ratting } = brandProduct
 
     const handleDeleteProduct = () => {
-        fetch(`https://brand-shop-assignment-server-side-7xzvemomc.vercel.app/products/${_id}`, {
+        fetch(`https://brand-shop-assignment-server-side-3xu1ymexo.vercel.app/products/${_id}`, {
             method: "DELETE"
 
         })
