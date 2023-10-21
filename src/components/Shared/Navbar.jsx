@@ -23,7 +23,6 @@ const Navbar = () => {
                 isActive ? "underline" : ""
             }>My Cart</NavLink>
     </div>
-
     return (
         <div className='bg-slate-500'>
             <div className="navbar max-w-6xl mx-auto ">

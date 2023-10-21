@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
     }, [])
 
     useEffect(() => {
-        fetch('https://brand-shop-assignment-server-side-7xzvemomc.vercel.app/products')
+        fetch('https://brand-shop-assignment-server-side-3xu1ymexo.vercel.app/products')
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data);
@@ -34,13 +34,7 @@ const AuthProvider = ({ children }) => {
                 console.error('Error fetching data:', error);
             });
     }, []);
-    // useEffect(() => {
-    //     fetch('https://brand-shop-assignment-server-side-rgw0eq3up.vercel.app/products')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setProducts(data)
-    //         })
-    // }, [])
+
     const googleLogin = () => {
         setLoading(true)
         return signInWithPopup(auth, provider)

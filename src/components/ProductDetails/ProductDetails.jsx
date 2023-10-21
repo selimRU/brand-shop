@@ -5,11 +5,8 @@ import { Context } from '../AuthProvider/AuthProvider';
 
 const ProductDetails = () => {
     const loadProducts = useLoaderData()
-    console.log(loadProducts);
     const { name, type, price, description, ratting, image, brand_name } = loadProducts
-    console.log(loadProducts);
     const { user } = useContext(Context)
-    console.log(user);
     const email = user.email
     const cart = {
         name: name,
@@ -21,10 +18,9 @@ const ProductDetails = () => {
         image: image,
         email
     }
-    console.log(cart);
     const handleAddToCart = (e) => {
         e.preventDefault()
-        fetch("https://brand-shop-assignment-server-side-7xzvemomc.vercel.app/cart", {
+        fetch("https://brand-shop-assignment-server-side-3xu1ymexo.vercel.app/cart", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -57,7 +53,6 @@ const ProductDetails = () => {
                     icon: 'error',
                 });
             })
-
     }
     return (
         <div className=' max-w-6xl mx-auto my-10 space-y-2 px-3 '>

@@ -3,8 +3,9 @@ import Swal from 'sweetalert2';
 
 const CartCard = ({ cart, setNewCart, newCart }) => {
     const { _id, image, name, price, type, description, ratting } = cart;
+
     const handleDeleteProduct = () => {
-        fetch(`https://brand-shop-assignment-server-side-7xzvemomc.vercel.app/cart/${_id}`, {
+        fetch(`https://brand-shop-assignment-server-side-3xu1ymexo.vercel.app/cart/${_id}`, {
             method: "DELETE",
         })
             .then(res => res.json())
@@ -20,7 +21,6 @@ const CartCard = ({ cart, setNewCart, newCart }) => {
                     confirmButtonText: 'Yes, delete it!'
                 })
                     .then((result) => {
-                        console.log(data.deletedCount);
                         if (result.isConfirmed) {
                             if (data.deletedCount > 0) {
                                 Swal.fire(

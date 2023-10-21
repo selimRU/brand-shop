@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const BrandCard = ({ brand }) => {
-    const {id, name, image } = brand;
+    const { name, image } = brand;
 
     return (
         <div className=' shadow-md p-5 rounded-md space-y-4'>

@@ -12,12 +12,10 @@ const BrandProducts = () => {
 
     useEffect(() => {
         const brandProducts = products.filter(product => product.brand_name === name);
-        // console.log(brandProducts);
         setNewProducts(brandProducts);
     }, [name, products]);
 
     const [newProducts, setNewProducts] = useState([]);
-    // console.log(newProducts);
     return (
         <div className=" z-0">
             <div className="max-w-6xl mt-4 mx-auto px-3">

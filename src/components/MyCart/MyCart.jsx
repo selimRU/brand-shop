@@ -9,11 +9,8 @@ const MyCart = () => {
     console.log(myCart);
     const { user } = useContext(Context)
     const email = user.email
-    // console.log(user);
     const cartData = myCart.filter(cart => cart.email === email)
     const [newCart, setNewCart] = useState(cartData)
-    // console.log(newCart);
-
     return (
         <div>
             <div className=" relative mb-[40%] max-w-6xl gap-5 mx-auto my-10 grid md:grid-cols-2 lg:grid-cols-3 px-3">
