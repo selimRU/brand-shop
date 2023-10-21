@@ -1,7 +1,7 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import auth from '../Firebase/Firebase.config';
-
+import './Auth.css'
 
 
 export const Context = createContext()
@@ -11,7 +11,11 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [brands, setBrands] = useState([])
     const [products, setProducts] = useState([])
-    
+    const [theme, setTheme] = useState('light')
+
+    const toggleTheme = () => {
+        setTheme((pre) => (pre === "light" ? "dark" : "light"))
+    }
     useEffect(() => {
         fetch('../brand.json')
             .then(res => res.json())
@@ -19,13 +23,24 @@ const AuthProvider = ({ children }) => {
                 setBrands(data)
             })
     }, [])
+
     useEffect(() => {
-        fetch('http://localhost:5000/products')
-            .then(res => res.json())
-            .then(data => {
-                setProducts(data)
+        fetch('https://brand-shop-assignment-server-side-7xzvemomc.vercel.app/products')
+            .then((res) => res.json())
+            .then((data) => {
+                setProducts(data);
             })
-    }, [])
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+    // useEffect(() => {
+    //     fetch('https://brand-shop-assignment-server-side-rgw0eq3up.vercel.app/products')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setProducts(data)
+    //         })
+    // }, [])
     const googleLogin = () => {
         setLoading(true)
         return signInWithPopup(auth, provider)
@@ -66,10 +81,13 @@ const AuthProvider = ({ children }) => {
         profileUpdate,
         logIn,
         logOut,
+        theme,
+        toggleTheme,
         user,
         brands,
         products,
-        loading,
+        setProducts,
+        loading
     }
 
     return (

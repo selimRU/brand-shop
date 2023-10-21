@@ -49,11 +49,11 @@ const Navbar = () => {
                 {
                     user ?
                         <div className="navbar-end">
-                            <div className=" flex flex-col md:flex-row-reverse md:gap-3 lg:flex-row-reverse items-center lg:gap-2">
-                                <img className=" end-6 h-6 rounded-full" src={user.photoURL} alt="" />
-                                <p className=" text-xs lg:text-sm md:text-sm">{user.displayName}</p>
+                            <div className=" px-5 -mr-2 md:-mr-0 flex flex-col md:flex-col md:gap-2 lg:flex-row-reverse items-center lg:gap-2">
+                                <img className=" end-6 h-6 md:h-8 lg:h-12 rounded-full" src={user.photoURL} alt="" />
+                                <p className=" text-[8px] lg:text-sm md:text-sm">{user.displayName}</p>
                             </div>
-                            <button onClick={handleLogOut} className="btn">Log Out</button>
+                            <button onClick={handleLogOut} className=" bg-slate-300 rounded-md py-1 md:py-2 md:px-3 lg:py-3 lg:px-4 px-[6px] text-xs md:text-sm lg:text-lg hover:bg-slate-200">Log Out</button>
                         </div> :
                         <div className="navbar-end">
                             <Link to='/logIn'>

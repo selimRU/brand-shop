@@ -1,20 +1,23 @@
 
+import { useContext } from 'react';
 import Swal from 'sweetalert2';
+import { Context } from '../AuthProvider/AuthProvider';
 
 const AddProducts = () => {
+    const { products, setProducts } = useContext(Context)
     const handleAddProduct = (e) => {
         e.preventDefault()
         const form = e.target
         const image = form.image.value
-        const brand = form.br.value
+        const brand_name = form.brand_name.value
         const name = form.name.value
         const type = form.type.value
         const price = form.price.value
         const description = form.description.value
         const ratting = form.ratting.value
-        const newProduct = { name, type, price, description,ratting, image }
+        const newProduct = { name, type, price, description, ratting, image, brand_name }
         console.log(newProduct);
-        fetch("http://localhost:5000/products", {
+        fetch("https://brand-shop-assignment-server-side-7xzvemomc.vercel.app/products", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -26,17 +29,29 @@ const AddProducts = () => {
                 if (data.insertedId) {
                     Swal.fire({
                         title: 'Wow!!!',
-                        text: 'Added Successfully',
-                        imageUrl: 'https://i.postimg.cc/vBMfLfRG/1.png',
-                        imageWidth: 400,
-                        imageHeight: 200,
-                        imageAlt: 'Custom image',
+                        text: 'Product Added Successfully',
                     })
                 }
+                else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Failed to add product',
+                        icon: 'error',
+                    });
+                }
+                setProducts([...products, newProduct])
+            })
+            .catch(error => {
+                console.error('An error occurred:', error);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Failed to add product. Please try again later.',
+                    icon: 'error',
+                });
             })
     }
     return (
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto my-5">
             <div className=" bg-slate-300 rounded-md py-5">
                 <h3 className=" text-center rancho text-4xl text-[#374151]">Add New Product</h3>
                 <p className=" text-center text-[#1B1A1AB3]">Welcome to the Product Add Page</p>
@@ -81,7 +96,7 @@ const AddProducts = () => {
                                 </div>
                                 <input
                                     type="text"
-                                    name="brand"
+                                    name="brand_name"
                                     id="brand"
                                     className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-[#1B1A1AB3] ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     placeholder="Enter brand name"
@@ -96,7 +111,7 @@ const AddProducts = () => {
                                 <input
                                     type="text"
                                     name="type"
-                                    id="category"
+                                    id="type"
                                     className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-[#1B1A1AB3] ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     placeholder="Enter type"
                                 />
@@ -146,7 +161,7 @@ const AddProducts = () => {
                         </div>
 
                         <div className=' mt-6'>
-                            <button className=" bg-slate-500 text-white w-full py-2 rounded-md" type="submit">Add Product</button>
+                            <button className=" hover:bg-slate-700 bg-slate-500 text-white w-full py-2 rounded-md" type="submit">Add Product</button>
                         </div>
                     </div>
                 </form>

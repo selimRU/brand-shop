@@ -4,9 +4,8 @@ import Swal from 'sweetalert2';
 const CartCard = ({ cart, setNewCart, newCart }) => {
     const { _id, image, name, price, type, description, ratting } = cart;
     const handleDeleteProduct = () => {
-        fetch(`http://localhost:5000/cart/${_id}`, {
-            method: "DELETE"
-
+        fetch(`https://brand-shop-assignment-server-side-7xzvemomc.vercel.app/cart/${_id}`, {
+            method: "DELETE",
         })
             .then(res => res.json())
             .then(data => {
@@ -21,6 +20,7 @@ const CartCard = ({ cart, setNewCart, newCart }) => {
                     confirmButtonText: 'Yes, delete it!'
                 })
                     .then((result) => {
+                        console.log(data.deletedCount);
                         if (result.isConfirmed) {
                             if (data.deletedCount > 0) {
                                 Swal.fire(
@@ -33,21 +33,19 @@ const CartCard = ({ cart, setNewCart, newCart }) => {
                             setNewCart(remainingCart)
                         }
                     })
-
             })
     }
     return (
-        <div className=' shadow-md p-3 rounded-md'>
-            <img className=" w-[300px] h-[200px] mx-auto" src={image} alt="" />
-            <div className='space-y-1 ml-10 lg:w-[40%]'>
+        <div className=' shadow-md rounded-md p-3'>
+            <img className=" rounded-md w-[300px] h-[200px] mx-auto" src={image} alt="" />
+            <div className='space-y-1 ml-10'>
                 <h3><span className=" font-semibold text-[#1B1A1A] raleway">name: </span>{name}</h3>
                 <h3><span className=" font-semibold text-[#1B1A1A] raleway">price: </span>{price} Tk</h3>
                 <h3><span className=" font-semibold text-[#1B1A1A] raleway">Type: </span>{type}</h3>
                 <h3><span className=" font-semibold text-[#1B1A1A] raleway">Description: </span>{description}</h3>
                 <h3><span className=" font-semibold text-[#1B1A1A] raleway">Ratting: </span>{ratting}</h3>
-                <button onClick={handleDeleteProduct}>Delete</button>
+                <button className=' text-white bg-slate-500 hover:bg-slate-700 px-5 py-2 rounded-md mt-2' onClick={handleDeleteProduct}>Delete</button>
             </div>
-
         </div>
     );
 };
