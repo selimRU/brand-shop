@@ -11,11 +11,7 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [brands, setBrands] = useState([])
     const [products, setProducts] = useState([])
-    const [theme, setTheme] = useState('light')
 
-    const toggleTheme = () => {
-        setTheme((pre) => (pre === "light" ? "dark" : "light"))
-    }
     useEffect(() => {
         fetch('../brand.json')
             .then(res => res.json())
@@ -75,8 +71,6 @@ const AuthProvider = ({ children }) => {
         profileUpdate,
         logIn,
         logOut,
-        theme,
-        toggleTheme,
         user,
         brands,
         products,
